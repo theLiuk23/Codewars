@@ -15,6 +15,6 @@ def quadratic_equation(a = 0, b = 0, c = 0):
     return x1, x2
 
 
-
-soltions = quadratic_equation(0, 1, 1)
+# add here three nums as arguments
+soltions = quadratic_equation()
 print("x1: " + str(soltions[0]) + "\nx2: " + str(soltions[1]))
