@@ -1,0 +1,20 @@
+import math
+
+def quadratic_equation(a = 0, b = 0, c = 0):
+    if a == 0:
+        raise Exception("The provided equation was not a second-degree equation.")
+
+    delta = b**2 - 4*a*c
+
+    if delta < 0:
+        raise Exception("Delta was less than 0. There are no solutions to the equation.")
+    
+    x1 = (-b - math.sqrt(delta)) / (2*a)
+    x2 = (-b + math.sqrt(delta)) / (2*a)
+
+    return x1, x2
+
+
+
+soltions = quadratic_equation(0, 1, 1)
+print("x1: " + str(soltions[0]) + "\nx2: " + str(soltions[1]))
