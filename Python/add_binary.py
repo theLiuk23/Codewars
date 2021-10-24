@@ -1,4 +1,3 @@
-import math
 import sys
 
 def add_binary(a, b):
