@@ -1,0 +1,16 @@
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloUser/bin/Debug/net5.0/HelloUser
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloUser/bin/Debug/net5.0/HelloUser.deps.json
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloUser/bin/Debug/net5.0/HelloUser.runtimeconfig.json
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloUser/bin/Debug/net5.0/HelloUser.runtimeconfig.dev.json
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloUser/bin/Debug/net5.0/HelloUser.dll
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloUser/bin/Debug/net5.0/ref/HelloUser.dll
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloUser/bin/Debug/net5.0/HelloUser.pdb
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloUser/obj/Debug/net5.0/HelloUser.csproj.AssemblyReference.cache
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloUser/obj/Debug/net5.0/HelloUser.GeneratedMSBuildEditorConfig.editorconfig
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloUser/obj/Debug/net5.0/HelloUser.AssemblyInfoInputs.cache
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloUser/obj/Debug/net5.0/HelloUser.AssemblyInfo.cs
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloUser/obj/Debug/net5.0/HelloUser.csproj.CoreCompileInputs.cache
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloUser/obj/Debug/net5.0/HelloUser.dll
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloUser/obj/Debug/net5.0/ref/HelloUser.dll
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloUser/obj/Debug/net5.0/HelloUser.pdb
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloUser/obj/Debug/net5.0/HelloUser.genruntimeconfig.cache
