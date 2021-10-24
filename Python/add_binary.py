@@ -1,11 +1,19 @@
 import math
+import sys
 
 def add_binary(a, b):
     sum = a + b
-    result = 0
-    for i in range(0, math.log2(sum)):
-        result += sum % 2
+    print("max: " + str(sys.maxsize))
+    print(type(sum))
+    result = ""
+    while True:
+        result += str(sum % 2)
+        # print("sum: " + str(sum) + "; result: " + result)
+        sum = int(sum // 2)
+        # print(str(sum))
+        if sum == 0:
+            break
 
-    return result
+    return "".join(reversed(result))
 
-print(add_binary(156))
+print(add_binary(6906393867515314436669271, 1375110409054115922127037))
