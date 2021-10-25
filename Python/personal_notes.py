@@ -1,3 +1,7 @@
+# file to test some functions
+# pls ignore it
+
+
 def add_binary(a,b):
     return '{0:o}'.format(a + b)
 
