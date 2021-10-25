@@ -2,6 +2,7 @@
 # pls ignore it
 
 
+# functions from codewars (add_binary kata)
 def add_binary(a,b):
     return '{0:o}'.format(a + b)
 
