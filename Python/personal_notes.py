@@ -1,5 +1,6 @@
-# file to test some functions
-# pls ignore it
+### file to test some functions
+### pls ignore it
+
 
 
 # functions from codewars (add_binary kata)
@@ -13,3 +14,8 @@ def add_binary2(a,b):
 
 
 print(add_binary2(6, 5))
+
+
+
+
+# next
