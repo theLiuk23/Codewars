@@ -1,0 +1,5 @@
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/UniqueInOrder/obj/Debug/net5.0/UniqueInOrder.csproj.AssemblyReference.cache
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/UniqueInOrder/obj/Debug/net5.0/UniqueInOrder.GeneratedMSBuildEditorConfig.editorconfig
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/UniqueInOrder/obj/Debug/net5.0/UniqueInOrder.AssemblyInfoInputs.cache
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/UniqueInOrder/obj/Debug/net5.0/UniqueInOrder.AssemblyInfo.cs
+/home/liuk23/Coding/GitHub/Codewars/C_sharp/UniqueInOrder/obj/Debug/net5.0/UniqueInOrder.csproj.CoreCompileInputs.cache
