@@ -17,11 +17,11 @@ namespace UniqueInOrder
 
             foreach (IEnumerable<T> item in iterable)
             {
-                if (!usedItems.Contains(item))
-                {
-                    solution = solution.add(item);
-                    usedItems.Concat(item);
-                }
+                // if (!usedItems.Contains(item))
+                // {
+                //     solution = solution.add(item);
+                //     usedItems.Concat(item);
+                // }
             }
 
             return solution;
