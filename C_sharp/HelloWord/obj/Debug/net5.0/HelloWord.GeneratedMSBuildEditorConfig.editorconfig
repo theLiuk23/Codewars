@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = HelloWord
-build_property.ProjectDir = f:\GitHub\Repositories\Codewars\C_sharp\HelloWord\
+build_property.ProjectDir = /home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloWord/
