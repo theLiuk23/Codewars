@@ -1,39 +1,39 @@
 import timeit
 
-# abcxyz - cab ==> True
-# aaaabc - abc
-# s1     - s2
+# # abcxyz - cab ==> True
+# # aaaabc - abc
+# # s1     - s2
 
-def scramble(s1, s2):
-    if s1 == s2:
-        return True
+# def scramble(s1, s2):
+#     if s1 == s2:
+#         return True
 
-    for letter in s2:
-        if s1.__contains__(letter):
-            s1 = remove(s1, s1.index(letter))
-            s2 = remove(s2, s2.index(letter))
-        if not s1.__contains__(letter):
-            return False
+#     for letter in s2:
+#         if s1.__contains__(letter):
+#             s1 = remove(s1, s1.index(letter))
+#             s2 = remove(s2, s2.index(letter))
+#         if not s1.__contains__(letter):
+#             return False
 
-    return True
-
-
-def remove(s, index):
-    if index >= len(s):
-        raise Exception("It does not exist an index {} at the string {}".format(index, s))
-
-    return s[0: index:] + s[index + 1::]
+#     return True
 
 
+# def remove(s, index):
+#     if index >= len(s):
+#         raise Exception("It does not exist an index {} at the string {}".format(index, s))
 
-print(timeit.timeit("scramble('rkqodlw', 'world')", setup="from __main__ import scramble"))
+#     return s[0: index:] + s[index + 1::]
+
+
+
+# print(timeit.timeit("scramble('rkqodlw', 'world')", setup="from __main__ import scramble"))
 
 
 
 
 # SOLUTION:
 
-def scramble2(s1,s2):
+def scramble2(s1, s2):
     for c in set(s2):
         # string.count(char) returns the num of char in the string.
         # e.g.= in "hello" "hello".count(l) ==> 2
@@ -42,4 +42,7 @@ def scramble2(s1,s2):
     return True
 
 
-print(str(timeit.timeit("scramble2('rkqodlw', 'world')", setup="from __main__ import scramble2")))
+
+# running the programme
+print(scramble2("lucailking", "klucingali"))
+print(str(round(timeit.timeit('scramble2("lucailking", "klucingali")', setup='from __main__ import scramble2'), 5)) + "ms")
