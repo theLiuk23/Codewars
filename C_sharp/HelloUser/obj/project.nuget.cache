@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "nSnnvoEw0OVA7PDJAlPTE7dBlqz+mUlpCCOigTww1nbVkg+ip/ZcPOQ21QvB1iY+F7a6OPeiwlzQpEQ6ZaQpmw==",
+  "dgSpecHash": "qDxfgIuLu9QjNiMEXH/qnFrpmgIMXnkkdP//9nBhQWzyahtSmKQRQ+jHajuVTzBliLKa0LTeeAjhwgtuVeJ0Mg==",
   "success": true,
   "projectFilePath": "/home/liuk23/Coding/GitHub/Codewars/C_sharp/HelloUser/HelloUser.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/liuk23/.nuget/packages/microsoft.netcore.app.ref/5.0.0/microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
+    "/home/liuk23/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "/home/liuk23/.nuget/packages/microsoft.netcore.app.host.linux-x64/5.0.12/microsoft.netcore.app.host.linux-x64.5.0.12.nupkg.sha512"
+  ],
   "logs": []
 }

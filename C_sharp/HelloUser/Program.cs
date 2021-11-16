@@ -7,7 +7,7 @@ namespace HelloUser
         static void Main(string[] args)
         {
             string username = Environment.UserName;
-            Console.WriteLine("Hello, " + username + "!");
+            Console.WriteLine("Hello {0}!", Environment.UserName);
         }
     }
 }
