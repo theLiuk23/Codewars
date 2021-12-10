@@ -1,2 +1,7 @@
-ciao/risposte
-riproduci/search_on_yt
+ciao/Answers
+ore/Answers
+come stai/Answers
+-------------------
+riproduci/SearchOnYt
+youtube/ChangeMusicPlatform
+spotify bello/ChangeMusicPlatform
