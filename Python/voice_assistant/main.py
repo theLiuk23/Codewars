@@ -18,6 +18,7 @@ preferred_music_platform = 'youtube'
 assistant_name = 'computer'
 commands_filename = 'commands.txt'
 commands_list = []
+questions_list = []
 
 
 # adds all the elements of commands.txt in commands_list
@@ -30,6 +31,8 @@ def LoadCommandList():
             if args[0].__contains__('-'):
                 continue
             commands_list.append([args[0], args[1]])
+
+
 
 # prints avaible languages in the os
 # index = 0
@@ -47,27 +50,29 @@ def Speak(text):
 # finds in the commands.txt the equivalent method
 def RunCommand(command):
     filename = ''
-    index = 0
-    for word in command.split(' '):
-        for index, result in enumerate(commands_list[index][0]):
-            print('RESULT: {}'.format(result))
-            if result.__contains__(word):
-                filename = commands_list[index]
+
+    for index, question in enumerate(questions_list):
+        for word in command.split(' '):
+            if word == question:
+                filename = commands_list[index][1]
                 break
-
-    # for word in command.split(' '):
-    #     for index, element in enumerate(commands_list[index][0]):
-
-
-    # no method matched
-    if filename == '':
-        Speak('Non credo di aver capito bene.')
-        return
-    print('METHOD: {} && INDEX: {}'.format(filename, index))
+            else:
+                # no match
+                Speak('Non credo di aver capito bene.')
+                return
 
     # converts string to method and runs it
     method = getattr(commands, filename).Main('', command)
     filename = ''
+
+
+def LoadQuestionsList():
+    for doubles in range(len(commands_list)):
+        for words in enumerate(commands_list[doubles]):
+            for num in str(words[0]):
+                if num == '0':
+                    questions_list.append(words[int(num) - 1])
+    
 
 
 
@@ -95,4 +100,5 @@ def Listening():
 
 if __name__ == "__main__":
     LoadCommandList()
+    LoadQuestionsList()
     Listening()

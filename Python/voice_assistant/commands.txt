@@ -4,4 +4,4 @@ come stai/Answers
 -------------------
 riproduci/SearchOnYt
 youtube/ChangeMusicPlatform
-spotify bello/ChangeMusicPlatform
+spotify/ChangeMusicPlatform
