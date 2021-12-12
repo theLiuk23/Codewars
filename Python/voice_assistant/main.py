@@ -1,6 +1,7 @@
 import speech_recognition as sr
 import pyttsx3
 import commands
+import string
 import sys
 
 
@@ -14,8 +15,8 @@ engine.setProperty('rate', 210)
 
 # variables
 voices = engine.getProperty('voices')
-preferred_music_platform = 'youtube'
-assistant_name = 'computer'
+preferred_music_platform = 'spotify'
+assistant_name = 'luca'
 commands_filename = 'commands.txt'
 commands_list = []
 questions_list = []
@@ -27,10 +28,18 @@ def LoadCommandList():
         lines = file.readlines()
         lines = [line.rstrip() for line in lines]
         for line in lines:
-            args = line.split('/')
-            if args[0].__contains__('-'):
+            if line.__contains__('-'):
                 continue
+            args = line.split('/')
             commands_list.append([args[0], args[1]])
+
+
+def LoadQuestionsList():
+    for doubles in range(len(commands_list)):
+        for words in enumerate(commands_list[doubles]):
+            for num in str(words[0]):
+                if num == '0':
+                    questions_list.append(words[int(num) - 1])
 
 
 
@@ -47,47 +56,41 @@ def Speak(text):
     return True
 
 
-# finds in the commands.txt the equivalent method
-def RunCommand(command):
-    filename = ''
-
-    for index, question in enumerate(questions_list):
+def SearchCommand(command):
+    for question in questions_list:
         for word in command.split(' '):
             if word == question:
-                filename = commands_list[index][1]
-                break
-            else:
-                # no match
-                Speak('Non credo di aver capito bene.')
-                return
+                return commands_list[questions_list.index(word)][1]
+                    
+    
+
+
+# finds in the commands.txt the equivalent method
+def RunCommand(command):
+    filename = SearchCommand(command)
+    # no match
+    if filename == '':
+        Speak('Non credo di aver capito bene.')
+        return
 
     # converts string to method and runs it
     method = getattr(commands, filename).Main('', command)
     filename = ''
 
 
-def LoadQuestionsList():
-    for doubles in range(len(commands_list)):
-        for words in enumerate(commands_list[doubles]):
-            for num in str(words[0]):
-                if num == '0':
-                    questions_list.append(words[int(num) - 1])
-    
-
-
-
 # main method - listening and running RunCommand(command)
 def Listening():
-    print('Ready to help you!')
+    print('Sono pronto per aiutarti!')
     while True:
         with sr.Microphone() as mic:
             try:
                 rec.adjust_for_ambient_noise(mic)
                 voice = rec.listen(mic)
                 command = str(rec.recognize_google(voice, language='it-IT')).lower()
-                print('command: {}.'.format(command))
-                if command.__contains__(assistant_name):
-                    command = command.replace(assistant_name, '')
+                if command.startswith(assistant_name):
+                    command = command.replace(assistant_name + ' ', '')
+                    command.translate(str.maketrans('', '', string.punctuation))
+                    print('COMMAND: {}'.format(command))
                     RunCommand(command)
 
             except sr.UnknownValueError:
