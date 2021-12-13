@@ -1,9 +1,10 @@
 import datetime
 import pywhatkit
 import spotipy
+import webbrowser
+import tekore as tk
 from spotipy.oauth2 import SpotifyClientCredentials
 import main
-import requests
 
 class SearchOnYt():
     def Main(self, command):
@@ -11,12 +12,18 @@ class SearchOnYt():
             command = command.replace('riproduci ', '')
             pywhatkit.playonyt(command)
         elif main.preferred_music_platform == 'spotify':
-            spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials('4dabb5933c0d49058846c549c6a703ba', '2aaa36256ccb43b88523498815b2416d'), language='IT')
-            results = spotify.search(q=command.replace('riproduci ', ''), type='track', limit=1, market='IT')
+            # conf = ('4dabb5933c0d49058846c549c6a703ba', '2aaa36256ccb43b88523498815b2416d', 'https://open.spotify.com/track/0vlCOzte4bru0gK74lfUIJ?si=43f59139a7144465')
+            # token = tk.prompt_for_user_token(*conf, scope=tk.scope.every)
+            # spotify = tk.Spotify(token)
+            # tracks = spotify.current_user_top_tracks(limit=1)
+            # spotify.playback_start_tracks([t.id for t in tracks.items])
 
-            for track in results['tracks']: # ERROR: track['uri] must contain an int not str
-                print(track['uri'])
 
+            # spotify = spotipy.Spotify(language='IT', auth='4dabb5933c0d49058846c549c6a703ba')
+            # results = spotify.search(q=command.replace('riproduci ', ''), type='track', limit=1, market='IT')
+            # link = results['tracks']['href']
+            # webbrowser.open(link)
+            
             main.Speak('Questa funzione non è ancora disponibile.')
 
 

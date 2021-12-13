@@ -16,7 +16,7 @@ engine.setProperty('rate', 210)
 # variables
 voices = engine.getProperty('voices')
 preferred_music_platform = 'spotify'
-assistant_name = 'luca'
+assistant_name = 'computer'
 commands_filename = 'commands.txt'
 commands_list = []
 questions_list = []
