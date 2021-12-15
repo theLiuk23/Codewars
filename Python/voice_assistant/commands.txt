@@ -4,6 +4,6 @@ bene/Answers
 ore/Answers
 come stai/Answers
 -------------------
-riproduci/SearchOnYt
+riproduci/SearchMusic
 youtube/ChangeMusicPlatform
 spotify/ChangeMusicPlatform
