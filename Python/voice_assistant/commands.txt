@@ -2,8 +2,12 @@ ciao/Answers
 stai/Answers
 bene/Answers
 ore/Answers
-come stai/Answers
 -------------------
 riproduci/SearchMusic
 youtube/ChangeMusicPlatform
 spotify/ChangeMusicPlatform
+musicale/ChangeMusicPlatform
+notizie/ReadNews
+notizia/ReadNews
+v*********/Answers
+inculo/Answers

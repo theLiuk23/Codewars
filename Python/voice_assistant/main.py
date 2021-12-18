@@ -15,7 +15,6 @@ engine.setProperty('rate', 210)
 
 # variables
 voices = engine.getProperty('voices')
-preferred_music_platform = 'spotify'
 assistant_name = 'computer'
 commands_filename = 'commands.txt'
 commands_list = []
@@ -61,8 +60,7 @@ def SearchCommand(command):
         for word in command.split(' '):
             if word == question:
                 return commands_list[questions_list.index(word)][1]
-                    
-    
+    return ''
 
 
 # finds in the commands.txt the equivalent method
@@ -74,7 +72,8 @@ def RunCommand(command):
         return
 
     # converts string to method and runs it
-    method = getattr(commands, filename).Main('', command)
+    classe = getattr(commands, filename)()
+    classe.Main(command)
     filename = ''
 
 
@@ -90,7 +89,7 @@ def Listening():
                 if command.startswith(assistant_name):
                     command = command.replace(assistant_name + ' ', '')
                     command.translate(str.maketrans('', '', string.punctuation))
-                    print('COMMAND: {}'.format(command))
+                    print(f'COMANDO: {command}')
                     RunCommand(command)
 
             except sr.UnknownValueError:
@@ -104,4 +103,5 @@ def Listening():
 if __name__ == "__main__":
     LoadCommandList()
     LoadQuestionsList()
+
     Listening()
