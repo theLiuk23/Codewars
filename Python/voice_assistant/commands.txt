@@ -11,3 +11,4 @@ notizie/ReadNews
 notizia/ReadNews
 v*********/Answers
 inculo/Answers
+ricordami/SetTask
