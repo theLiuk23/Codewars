@@ -3,6 +3,7 @@ import speech_recognition as sr
 import pyttsx3
 import commands
 import string
+import threading
 import time
 import sys
 
@@ -75,7 +76,8 @@ def RunCommand(command):
 
     # converts string to method and runs it
     classe = getattr(commands, filename)()
-    classe.Main(command)
+    thread = threading.Thread(target=classe.Main, args=(command,))
+    thread.run()
     filename = ''
 
 
