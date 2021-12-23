@@ -2,6 +2,7 @@ import threading
 import speech_recognition as sr
 from spotipy.oauth2 import SpotifyClientCredentials
 from pygooglenews import GoogleNews
+from configparser import ConfigParser
 from pathlib import Path
 import time
 import playsound
@@ -11,13 +12,17 @@ import pywhatkit
 import spotipy
 import re
 import sys
-import main
 
-music_platform = 'youtube'
-# TODO: music_platform in txt file
+
+class Start(object):
+    def Main(self):
+        ReadTxt().Main()
+
 
 class SearchMusic(object):
     def Main(self, command):
+        import main
+        music_platform = ReadTxt().music_platform
         command = command.replace('riproduci ', '')
         if music_platform == 'youtube':
             pywhatkit.playonyt(command)
@@ -28,10 +33,13 @@ class SearchMusic(object):
             searchResults = spotifyObject.search(command, 1, 0, 'track')
             link = searchResults['tracks']['items'][0]['external_urls']['spotify']
             webbrowser.open(link, 0)
+        else:
+            main.Speak(f'La piattaforma musicale {music_platform} non è supportata. Prova con youtube o spotify.')
 
 
 class Answers(object):
     def Main(self, command):
+        import main
         if command.__contains__('ciao'):
             main.Speak(f'Ciao, sono {main.assistant_name}, come posso aiutarti?')
         elif command.__contains__('come stai') or command.__contains__('bene'):
@@ -45,27 +53,20 @@ class Answers(object):
 
 
 class ChangeMusicPlatform(object):
+    music_platform = None
+
     def Main(self, command):
+        import main
+        if self.music_platform is None:
+            raise ValueError('"Music platform" can\'t be None.')
+
         if command.__contains__('youtube'):
-            music_platform = 'youtube'
+            self.music_platform = 'youtube'
         elif command.__contains__('spotify'):
-            music_platform = 'spotify'
+            self.music_platform = 'spotify'
 
-        main.Speak(f'Ho cambiato la piattaforma musicale predefinita in {music_platform}.')
-
-    
-    def change_txt(self, platform):
-        with open('settings.txt') as settings:
-            lines = settings.readlines()
-            for line in lines:
-                if line.__contains__('music_platform'):
-                    mp_line_index = lines.index('music_platform')
-                    break
-            settings.close()
-
-        with open('settings.txt', 'w') as settings:
-            # settings.
-            settings.close()
+        main.Speak(f'Ho cambiato la piattaforma musicale predefinita in {self.music_platform}.')
+        self.change_txt(self.music_platform)
 
 
 class ReadNews(object):
@@ -82,8 +83,8 @@ class ReadNews(object):
         except:
             return 5
 
-
     def Main(self, command):
+        import main
         num = self.get_num(command)
         index = 1
 
@@ -98,6 +99,7 @@ class ReadNews(object):
         for item in top['entries'][:num]:
             title = item['title'].split('-')[0] #removes the source from the end of the string
             main.Speak(f'{index}, {title}')
+            time.sleep(0.5)
             index = index + 1
 
 
@@ -107,6 +109,7 @@ class SetTask(object):
     timer = None
 
     def ask_date(self, attempts):
+        import main
         rec = sr.Recognizer()
         week_days = {'lunedì':0, 'martedì':1, 'mercoledì':2, 'giovedì':3, 'venerdì':4, 'sabato':5, 'domenica':6}
         if attempts == 0:
@@ -127,6 +130,7 @@ class SetTask(object):
                 self.ask_date(attempts + 1)
 
     def ask_time(self, attempts):
+        import main
         rec = sr.Recognizer()
         if attempts == 0:
             main.Speak('Ok, a che ora?')
@@ -154,6 +158,7 @@ class SetTask(object):
                 self.ask_time(attempts + 1)
 
     def set_task(self, day):
+        import main
         today = datetime.datetime.today().weekday()
         remaining_days = day - today
         time = self.orario
@@ -166,6 +171,7 @@ class SetTask(object):
         thread.start()
 
     def start_timer(self):
+        import main
         time.sleep(int(self.timer) * 60)
         main.Speak(f'Hey, ricordati di {self.memo}. Mi raccomando!')
         sound_file_location = Path(__file__).parent + '/DieForYou.mp3'
@@ -184,3 +190,40 @@ class Stop(object):
     def Main(self, command):
         print(f'Closing the istance of the script')
         sys.exit(0)
+
+
+class SaveToTxt(object):
+    # variables
+    music_platform = 'youtube'
+    config = ConfigParser()
+
+    def Main(self, settings_list, new_value):
+        import main
+        if type(settings_list) is not list or type(new_value) is not list:
+            raise NameError('Both settings and values need to be passed in a list.')
+        if len(settings_list) is not len(new_value):
+            raise Exception('There must be the same number of elements in "settings_list" and in "new_value"')
+
+        self.config.read('config.ini')
+        self.music_platform = self.config['settings']['music_platform']
+        for i in range(len(settings_list)):
+            self.config.set('settings', settings_list[i - 1], new_value[i - 1])
+            print('Ce la ho fatta!')
+        
+        try:
+            # finally saves
+            with open('config.ini', 'w') as file:
+                self.config.write(file)
+        except Exception as e:
+            print(e)
+            main.Speak('Non sono riuscita a salvare le nuove impostazioni.')
+            return
+
+
+class ReadTxt(object):
+    config = ConfigParser()
+    music_platform = None
+
+    def Main(self):
+        self.config.read('config.ini')
+        self.music_platform = self.config.get('settings', 'music_platform')
