@@ -63,9 +63,13 @@ class SaveTxt(object):
 
 class DeleteTxt(object):
     config = ConfigParser()
-    def Main(self, partition, content):
-        if type(content) is not list:
-            raise Exception('Content must be a list.')
+    def content(self, partition, content):
+        if type(content) is not str:
+            raise Exception('Content must be a string.')
+        self.config.read('config.ini')
+        self.config.remove_option(partition, content)
+
+    def partition(self, partition):
         self.config.read('config.ini')
         self.config.remove_section(partition)
 
@@ -248,10 +252,10 @@ class SetTask(object):
         SaveTxt().Main('timers', ['timer_memo', 'timer_day', 'timer_time'], [self.memo, str(day), str(time[0]) + str(time[1])])
 
         todays_minutes = int(datetime.datetime.now().hour * 60 + datetime.datetime.now().minute)
-        self.timer_minutes = int(time[0]) * 60 + int(time[1]) + 1440 * int(remaining_days) - int(todays_minutes)
-        if self.timer_minutes <= 0:
-            raise Exception('The task date must be within a week of time.')
-        Speak.speak(f'Bene! Il timer si attiverà tra {self.timer_minutes} minuti')
+        timer_minutes = int(time[0]) * 60 + int(time[1]) + 1440 * int(remaining_days) - int(todays_minutes)
+        if timer_minutes <= 0:
+            DeleteTxt().partition('timers')
+        Speak.speak(f'Bene! Il timer si attiverà tra {timer_minutes} minuti')
         thread = threading.Thread(target=self.start_timer)
         thread.start()
 
@@ -260,7 +264,7 @@ class SetTask(object):
         Speak.speak(f'Hey, ricordati di {self.memo}. Mi raccomando!')
         sound_file_location = str(Path(__file__).parent) + '/DieForYou.mp3'
         print(f'SOUND PATH: {sound_file_location}')
-        DeleteTxt().Main('timers', [])
+        DeleteTxt().partition('timers')
         playsound.playsound(sound_file_location)
         # sound doesn't work (?)
 
@@ -269,12 +273,12 @@ class SetTask(object):
         todays_minutes = int(datetime.datetime.now().hour * 60 + datetime.datetime.now().minute)
         timer_minutes = int(float(timer[0])) * 60 + int(float(timer[1])) + 1440 * int(remaining_days) - int(float(todays_minutes))
         if timer_minutes <= 0 or timer_minutes > 1440 * 7:
-            raise Exception('Either the timer is negative or it is longer than a week. Both cases are not admitted.')
+            DeleteTxt().partition('timers')
         time.sleep(int(timer_minutes) * 60)
         Speak.speak(f'Hey, ricordati di {memo}. Mi raccomando!')
         sound_file_location = str(Path(__file__).parent) + '/DieForYou.mp3'
         print(f'SOUND PATH: {sound_file_location}')
-        DeleteTxt().Main('timers', [])
+        DeleteTxt().partition('timers', [])
         playsound.playsound(sound_file_location)
         # sound doesn't work (?)
 
